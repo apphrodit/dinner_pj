@@ -4,40 +4,40 @@ const prisma = new PrismaClient();
 const create = async (req, res) => {
   try {
     const data = req.body;
-    const cliente = await prisma.cliente.create({
+    const itens = await prisma.itens.create({
       data: data,
     });
-    return res.status(201).json(cliente).end();
+    return res.status(201).json(itens).end();
   } catch (error) {
-    res.status(400).json({ error: error.message }).end();
+    res.status(404).json({ error: error.message }).end();
   }
 };
 
 const read = async (req, res) => {
   if (req.params.id) {
     const id = parseInt(req.params.id);
-    const cliente = await prisma.cliente.findUnique({
+    const itens = await prisma.itens.findUnique({
       where: {
         id: id,
       },
     });
-    return res.json(cliente);
+    return res.json(itens);
   } else {
-    const cliente = await prisma.cliente.findMany();
-    return res.json(cliente);
+    const itens = await prisma.itens.findMany();
+    return res.json(itens);
   }
 };
 
 const update = async (req, res) => {
   try {
     const data = req.body;
-    let cliente = await prisma.cliente.update({
+    let itens = await prisma.itens.update({
       data: data,
       where: {
         id: parseInt(req.body.id),
       },
     });
-    res.status(202).json(cliente).end();
+    res.status(202).json(itens).end();
   } catch (error) {
     res.status(404).json({ error: error.message }).end();
   }
@@ -45,12 +45,12 @@ const update = async (req, res) => {
 
 const del = async (req, res) => {
   try {
-    let cliente = await prisma.cliente.delete({
+    let itens = await prisma.itens.delete({
       where: {
         id: parseInt(req.params.id),
       },
     });
-    res.status(204).json(cliente).end();
+    res.status(204).json(itens).end();
   } catch (error) {
     res.status(404).json({ error: error.message }).end();
   }
