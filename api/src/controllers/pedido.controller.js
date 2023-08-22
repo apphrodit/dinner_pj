@@ -33,7 +33,6 @@ const readCozinha = async (req, res) => {
     select: {
       id: true,
       clienteId: true,
-      clienteId: true,
       motoboyId: true,
       dataPedido: true,
       dataCozinha: true,
@@ -42,9 +41,7 @@ const readCozinha = async (req, res) => {
       valorEntrega: true,
       itens: {
         select: {
-          id: true,
           quantidade: true,
-          valor: true,
           cardapio: true,
         },
       },
@@ -71,9 +68,7 @@ const readEntrega = async (req, res) => {
       valorEntrega: true,
       itens: {
         select: {
-          id: true,
           quantidade: true,
-          valor: true,
           cardapio: true,
         },
       },
